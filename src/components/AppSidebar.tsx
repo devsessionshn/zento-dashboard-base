@@ -12,6 +12,8 @@ import {
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import zentoLogo from "@/assets/zento-logo.png";
+import { useLanguage } from "@/i18n/LanguageContext";
+import type { TranslationKey } from "@/i18n/translations";
 
 import {
   Sidebar,
@@ -37,30 +39,31 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const mainNav = [
-  { title: "Overview", url: "/", icon: LayoutDashboard },
-  { title: "Analytics", url: "/analytics", icon: BarChart3 },
-  { title: "Users", url: "/users", icon: Users },
-  { title: "Reports", url: "/reports", icon: FileText },
-  { title: "Notifications", url: "/notifications", icon: Bell },
+  { titleKey: "overview" as TranslationKey, url: "/", icon: LayoutDashboard },
+  { titleKey: "analytics" as TranslationKey, url: "/analytics", icon: BarChart3 },
+  { titleKey: "users" as TranslationKey, url: "/users", icon: Users },
+  { titleKey: "reports" as TranslationKey, url: "/reports", icon: FileText },
+  { titleKey: "notifications" as TranslationKey, url: "/notifications", icon: Bell },
 ];
 
 const bottomNav = [
-  { title: "Settings", url: "/settings", icon: Settings },
-  { title: "Help", url: "/help", icon: HelpCircle },
+  { titleKey: "settings" as TranslationKey, url: "/settings", icon: Settings },
+  { titleKey: "help" as TranslationKey, url: "/help", icon: HelpCircle },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const { t } = useLanguage();
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="p-4 flex items-center justify-center">
+      <SidebarHeader className="p-3 flex items-center justify-center">
         <img
           src={zentoLogo}
           alt="Zento"
-          className={collapsed ? "h-10 w-10 object-contain" : "h-16 w-auto object-contain"}
+          className={collapsed ? "h-10 w-10 object-contain" : "h-20 w-full object-contain px-2"}
         />
       </SidebarHeader>
 
@@ -69,13 +72,13 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-foreground/50 uppercase text-[10px] tracking-widest">
-            Menu
+            {t("menu")}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainNav.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                <SidebarMenuItem key={item.titleKey}>
+                  <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
@@ -83,7 +86,7 @@ export function AppSidebar() {
                       activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                     >
                       <item.icon className="h-4 w-4" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {!collapsed && <span>{t(item.titleKey)}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -98,15 +101,15 @@ export function AppSidebar() {
       <SidebarFooter className="p-2">
         <SidebarMenu>
           {bottomNav.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild tooltip={item.title}>
+            <SidebarMenuItem key={item.titleKey}>
+              <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
                 <NavLink
                   to={item.url}
                   className="hover:bg-sidebar-accent"
                   activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                 >
                   <item.icon className="h-4 w-4" />
-                  {!collapsed && <span>{item.title}</span>}
+                  {!collapsed && <span>{t(item.titleKey)}</span>}
                 </NavLink>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -139,12 +142,12 @@ export function AppSidebar() {
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="top" align="start" className="w-56">
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Account Settings</DropdownMenuItem>
+            <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
+            <DropdownMenuItem>{t("accountSettings")}</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-destructive">
               <LogOut className="mr-2 h-4 w-4" />
-              Log out
+              {t("logOut")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

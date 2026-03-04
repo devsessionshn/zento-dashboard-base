@@ -24,36 +24,14 @@ import {
   Cell,
 } from "recharts";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
+import type { TranslationKey } from "@/i18n/translations";
 
-const kpis = [
-  {
-    title: "Total Revenue",
-    value: "$45,231",
-    change: "+20.1%",
-    trend: "up" as const,
-    icon: DollarSign,
-  },
-  {
-    title: "Active Users",
-    value: "2,350",
-    change: "+15.3%",
-    trend: "up" as const,
-    icon: Users,
-  },
-  {
-    title: "Orders",
-    value: "1,247",
-    change: "-2.4%",
-    trend: "down" as const,
-    icon: ShoppingCart,
-  },
-  {
-    title: "Conversion Rate",
-    value: "3.2%",
-    change: "+4.1%",
-    trend: "up" as const,
-    icon: Activity,
-  },
+const kpis: { titleKey: TranslationKey; value: string; change: string; trend: "up" | "down"; icon: typeof DollarSign }[] = [
+  { titleKey: "totalRevenue", value: "$45,231", change: "+20.1%", trend: "up", icon: DollarSign },
+  { titleKey: "activeUsers", value: "2,350", change: "+15.3%", trend: "up", icon: Users },
+  { titleKey: "orders", value: "1,247", change: "-2.4%", trend: "down", icon: ShoppingCart },
+  { titleKey: "conversionRate", value: "3.2%", change: "+4.1%", trend: "up", icon: Activity },
 ];
 
 const revenueData = [
@@ -80,12 +58,12 @@ const COLORS = [
   "hsl(172, 82%, 54%)",
 ];
 
-const recentActivity = [
-  { user: "Alex M.", action: "Completed purchase", time: "2 min ago", amount: "$124.00" },
-  { user: "Sarah K.", action: "New registration", time: "5 min ago", amount: null },
-  { user: "James L.", action: "Upgraded plan", time: "12 min ago", amount: "$49.00" },
-  { user: "Maria D.", action: "Submitted ticket", time: "18 min ago", amount: null },
-  { user: "Tom W.", action: "Completed purchase", time: "25 min ago", amount: "$89.50" },
+const recentActivity: { user: string; actionKey: TranslationKey; time: string; amount: string | null }[] = [
+  { user: "Alex M.", actionKey: "completedPurchase", time: "2 min ago", amount: "$124.00" },
+  { user: "Sarah K.", actionKey: "newRegistration", time: "5 min ago", amount: null },
+  { user: "James L.", actionKey: "upgradedPlan", time: "12 min ago", amount: "$49.00" },
+  { user: "Maria D.", actionKey: "submittedTicket", time: "18 min ago", amount: null },
+  { user: "Tom W.", actionKey: "completedPurchase", time: "25 min ago", amount: "$89.50" },
 ];
 
 const container = {
@@ -99,22 +77,24 @@ const item = {
 };
 
 const Index = () => {
+  const { t } = useLanguage();
+
   return (
     <DashboardLayout>
       <motion.div variants={container} initial="hidden" animate="show">
         <motion.div variants={item}>
-          <h1 className="text-2xl font-bold mb-1">Overview</h1>
-          <p className="text-muted-foreground mb-6">Welcome back! Here's what's happening today.</p>
+          <h1 className="text-2xl font-bold mb-1">{t("welcomeTitle")}</h1>
+          <p className="text-muted-foreground mb-6">{t("welcomeMessage")}</p>
         </motion.div>
 
         {/* KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {kpis.map((kpi) => (
-            <motion.div key={kpi.title} variants={item}>
+            <motion.div key={kpi.titleKey} variants={item}>
               <Card className="hover:shadow-md transition-shadow">
                 <CardContent className="p-5">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm text-muted-foreground">{kpi.title}</span>
+                    <span className="text-sm text-muted-foreground">{t(kpi.titleKey)}</span>
                     <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
                       <kpi.icon className="h-4 w-4 text-primary" />
                     </div>
@@ -145,7 +125,7 @@ const Index = () => {
           <motion.div variants={item} className="lg:col-span-2">
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base font-semibold">Revenue Overview</CardTitle>
+                <CardTitle className="text-base font-semibold">{t("revenueOverview")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={280}>
@@ -183,7 +163,7 @@ const Index = () => {
           <motion.div variants={item}>
             <Card className="h-full">
               <CardHeader className="pb-2">
-                <CardTitle className="text-base font-semibold">Traffic Sources</CardTitle>
+                <CardTitle className="text-base font-semibold">{t("trafficSources")}</CardTitle>
               </CardHeader>
               <CardContent className="flex flex-col items-center">
                 <ResponsiveContainer width="100%" height={180}>
@@ -226,7 +206,7 @@ const Index = () => {
           <motion.div variants={item}>
             <Card>
               <CardHeader className="pb-2">
-                <CardTitle className="text-base font-semibold">Orders by Month</CardTitle>
+                <CardTitle className="text-base font-semibold">{t("ordersByMonth")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={220}>
@@ -250,9 +230,9 @@ const Index = () => {
           <motion.div variants={item}>
             <Card>
               <CardHeader className="pb-2 flex flex-row items-center justify-between">
-                <CardTitle className="text-base font-semibold">Recent Activity</CardTitle>
+                <CardTitle className="text-base font-semibold">{t("recentActivity")}</CardTitle>
                 <button className="text-xs text-primary font-medium flex items-center gap-1 hover:underline">
-                  View all <ArrowUpRight className="h-3 w-3" />
+                  {t("viewAll")} <ArrowUpRight className="h-3 w-3" />
                 </button>
               </CardHeader>
               <CardContent>
@@ -265,7 +245,7 @@ const Index = () => {
                         </div>
                         <div>
                           <p className="text-sm font-medium leading-tight">{act.user}</p>
-                          <p className="text-xs text-muted-foreground">{act.action}</p>
+                          <p className="text-xs text-muted-foreground">{t(act.actionKey)}</p>
                         </div>
                       </div>
                       <div className="text-right">

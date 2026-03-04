@@ -1,15 +1,24 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Bell, Search } from "lucide-react";
+import { Bell, Search, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/i18n/LanguageContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const { language, setLanguage, t } = useLanguage();
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -21,13 +30,35 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="hidden md:flex relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search..."
+                  placeholder={t("search")}
                   className="pl-9 w-64 bg-muted/50 border-none"
                 />
               </div>
             </div>
 
             <div className="flex items-center gap-3">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" title="Language">
+                    <Globe className="h-5 w-5 text-muted-foreground" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onClick={() => setLanguage("en")}
+                    className={language === "en" ? "font-semibold text-primary" : ""}
+                  >
+                    🇺🇸 English
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setLanguage("es")}
+                    className={language === "es" ? "font-semibold text-primary" : ""}
+                  >
+                    🇪🇸 Español
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <Button variant="ghost" size="icon" className="relative">
                 <Bell className="h-5 w-5 text-muted-foreground" />
                 <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-primary" />
