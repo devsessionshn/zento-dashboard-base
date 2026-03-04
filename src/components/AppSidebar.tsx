@@ -56,19 +56,12 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="p-4">
-        <div className="flex items-center gap-3">
-          <img
-            src={zentoLogo}
-            alt="Zento"
-            className="h-8 w-8 rounded-lg object-contain"
-          />
-          {!collapsed && (
-            <span className="text-lg font-bold tracking-tight text-sidebar-primary-foreground">
-              Zento
-            </span>
-          )}
-        </div>
+      <SidebarHeader className="p-4 flex items-center justify-center">
+        <img
+          src={zentoLogo}
+          alt="Zento"
+          className={collapsed ? "h-8 w-8 object-contain" : "h-12 w-auto object-contain"}
+        />
       </SidebarHeader>
 
       <SidebarSeparator />
