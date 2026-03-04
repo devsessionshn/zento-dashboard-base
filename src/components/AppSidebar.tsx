@@ -60,7 +60,7 @@ export function AppSidebar() {
         <img
           src={zentoLogo}
           alt="Zento"
-          className={collapsed ? "h-8 w-8 object-contain" : "h-12 w-auto object-contain"}
+          className={collapsed ? "h-10 w-10 object-contain" : "h-16 w-auto object-contain"}
         />
       </SidebarHeader>
 
