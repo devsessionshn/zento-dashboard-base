@@ -56,11 +56,11 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="p-4 flex items-center justify-center">
+      <SidebarHeader className="p-3 flex items-center justify-center">
         <img
           src={zentoLogo}
           alt="Zento"
-          className={collapsed ? "h-10 w-10 object-contain" : "h-16 w-auto object-contain"}
+          className={collapsed ? "h-10 w-10 object-contain" : "h-20 w-full object-contain px-2"}
         />
       </SidebarHeader>
 
