@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
-import zentoLogo from "@/assets/zento-logo.png";
 import zentoIcon from "@/assets/zento-icon.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
@@ -59,11 +58,9 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-3 flex items-center justify-center">
-        <img
-          src={collapsed ? zentoIcon : zentoLogo}
-          alt="Zento"
-          className={collapsed ? "h-8 w-8 object-contain" : "h-20 w-full object-contain px-2"}
-        />
+        {collapsed && (
+          <img src={zentoIcon} alt="Zento" className="h-8 w-8 object-contain" />
+        )}
       </SidebarHeader>
 
       <SidebarSeparator />
