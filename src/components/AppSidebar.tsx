@@ -116,39 +116,37 @@ export function AppSidebar() {
 
         <SidebarSeparator />
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="flex w-full items-center gap-3 rounded-lg p-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
-              <Avatar className="h-8 w-8 border border-sidebar-border">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
-                  ZU
-                </AvatarFallback>
-              </Avatar>
-              {!collapsed && (
-                <>
-                  <div className="flex-1 text-left">
-                    <p className="font-medium text-sidebar-primary-foreground text-sm leading-tight">
-                      Zento User
-                    </p>
-                    <p className="text-[11px] text-sidebar-foreground/50">
-                      admin@zento.app
-                    </p>
-                  </div>
-                  <ChevronDown className="h-4 w-4 text-sidebar-foreground/50" />
-                </>
-              )}
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent side="top" align="start" className="w-56">
-            <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
-            <DropdownMenuItem>{t("accountSettings")}</DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-destructive">
-              <LogOut className="mr-2 h-4 w-4" />
-              {t("logOut")}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {!collapsed && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="flex w-full items-center gap-3 rounded-lg p-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
+                <Avatar className="h-8 w-8 border border-sidebar-border">
+                  <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                    ZU
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1 text-left">
+                  <p className="font-medium text-sidebar-primary-foreground text-sm leading-tight">
+                    Zento User
+                  </p>
+                  <p className="text-[11px] text-sidebar-foreground/50">
+                    admin@zento.app
+                  </p>
+                </div>
+                <ChevronDown className="h-4 w-4 text-sidebar-foreground/50" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side="top" align="start" className="w-56">
+              <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
+              <DropdownMenuItem>{t("accountSettings")}</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-destructive">
+                <LogOut className="mr-2 h-4 w-4" />
+                {t("logOut")}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </SidebarFooter>
     </Sidebar>
   );

@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Package, Tag, Truck, DollarSign, CalendarClock } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -7,7 +6,7 @@ const InventoryPage = () => {
   const { t } = useLanguage();
 
   return (
-    <DashboardLayout>
+    <>
       <h1 className="text-2xl font-bold mb-1">{t("inventory")}</h1>
       <p className="text-muted-foreground mb-6">{t("inventoryDescription")}</p>
 
@@ -72,7 +71,7 @@ const InventoryPage = () => {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

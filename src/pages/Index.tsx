@@ -79,7 +79,7 @@ const Index = () => {
   const { t } = useLanguage();
 
   return (
-    <DashboardLayout>
+    <>
       <motion.div variants={container} initial="hidden" animate="show">
         <motion.div variants={item}>
           <h1 className="text-2xl font-bold mb-1">{t("welcomeTitle")}</h1>
@@ -261,7 +261,7 @@ const Index = () => {
           </motion.div>
         </div>
       </motion.div>
-    </DashboardLayout>
+    </>
   );
 };
 

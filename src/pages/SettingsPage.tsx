@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Lock, Palette, Globe } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -7,7 +6,7 @@ const SettingsPage = () => {
   const { t } = useLanguage();
 
   return (
-    <DashboardLayout>
+    <>
       <h1 className="text-2xl font-bold mb-1">{t("settings")}</h1>
       <p className="text-muted-foreground mb-6">{t("settingsDescription")}</p>
 
@@ -60,7 +59,7 @@ const SettingsPage = () => {
           </CardContent>
         </Card>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 
