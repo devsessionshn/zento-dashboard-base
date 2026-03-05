@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
-import zentoIcon from "@/assets/zento-icon.png";
+import zentoLogo from "@/assets/zento-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
 
@@ -58,9 +58,11 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-3 flex items-center justify-center">
-        {collapsed && (
-          <img src={zentoIcon} alt="Zento" className="h-8 w-8 object-contain" />
-        )}
+        <img
+          src={zentoLogo}
+          alt="Zento"
+          className={collapsed ? "h-10 w-10 object-contain" : "h-20 w-full object-contain px-2"}
+        />
       </SidebarHeader>
 
       <SidebarSeparator />
@@ -78,10 +80,10 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="group hover:bg-sidebar-accent hover:text-white"
+                      className="hover:bg-sidebar-accent"
                       activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                     >
-                      <item.icon className="h-4 w-4 transition-colors group-hover:text-white" />
+                      <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{t(item.titleKey)}</span>}
                     </NavLink>
                   </SidebarMenuButton>
@@ -101,10 +103,10 @@ export function AppSidebar() {
               <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
                 <NavLink
                   to={item.url}
-                  className="group hover:bg-sidebar-accent hover:text-white"
+                  className="hover:bg-sidebar-accent"
                   activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                 >
-                  <item.icon className="h-4 w-4 transition-colors group-hover:text-white" />
+                  <item.icon className="h-4 w-4" />
                   {!collapsed && <span>{t(item.titleKey)}</span>}
                 </NavLink>
               </SidebarMenuButton>
