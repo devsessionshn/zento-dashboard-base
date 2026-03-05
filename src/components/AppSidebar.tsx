@@ -43,14 +43,10 @@ const mainNav = [
   { titleKey: "overview" as TranslationKey, url: "/", icon: LayoutDashboard },
   { titleKey: "users" as TranslationKey, url: "/users", icon: Users },
   { titleKey: "inventory" as TranslationKey, url: "/inventory", icon: Package },
-  { titleKey: "analytics" as TranslationKey, url: "/analytics", icon: BarChart3 },
-  { titleKey: "reports" as TranslationKey, url: "/reports", icon: FileText },
-  { titleKey: "notifications" as TranslationKey, url: "/notifications", icon: Bell },
 ];
 
 const bottomNav = [
   { titleKey: "settings" as TranslationKey, url: "/settings", icon: Settings },
-  { titleKey: "help" as TranslationKey, url: "/help", icon: HelpCircle },
 ];
 
 export function AppSidebar() {
