@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/DashboardLayout";
+import {
 import {
   TrendingUp,
   TrendingDown,

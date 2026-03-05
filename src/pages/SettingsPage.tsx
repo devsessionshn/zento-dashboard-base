@@ -1,4 +1,4 @@
-import { DashboardLayout } from "@/components/DashboardLayout";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Lock, Palette, Globe } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
