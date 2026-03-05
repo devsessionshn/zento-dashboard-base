@@ -42,7 +42,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 const mainNav = [
   { titleKey: "overview" as TranslationKey, url: "/", icon: LayoutDashboard },
   { titleKey: "users" as TranslationKey, url: "/users", icon: Users },
-  { titleKey: "inventory" as TranslationKey, url: "/inventory", icon: BarChart3 },
+  { titleKey: "inventory" as TranslationKey, url: "/inventory", icon: Package },
   { titleKey: "analytics" as TranslationKey, url: "/analytics", icon: BarChart3 },
   { titleKey: "reports" as TranslationKey, url: "/reports", icon: FileText },
   { titleKey: "notifications" as TranslationKey, url: "/notifications", icon: Bell },
