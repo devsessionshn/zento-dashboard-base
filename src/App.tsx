@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/i18n/LanguageContext";
+import { DashboardLayout } from "@/components/DashboardLayout";
 import Index from "./pages/Index";
 import UsersPage from "./pages/UsersPage";
 import InventoryPage from "./pages/InventoryPage";
@@ -19,14 +20,15 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/users" element={<UsersPage />} />
-            <Route path="/inventory" element={<InventoryPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <DashboardLayout>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/users" element={<UsersPage />} />
+              <Route path="/inventory" element={<InventoryPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </DashboardLayout>
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
