@@ -78,10 +78,10 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="hover:bg-sidebar-accent hover:text-white"
+                      className="group hover:bg-sidebar-accent hover:text-white"
                       activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                     >
-                      <item.icon className="h-4 w-4" />
+                      <item.icon className="h-4 w-4 transition-colors group-hover:text-white" />
                       {!collapsed && <span>{t(item.titleKey)}</span>}
                     </NavLink>
                   </SidebarMenuButton>
@@ -101,10 +101,10 @@ export function AppSidebar() {
               <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
                 <NavLink
                   to={item.url}
-                  className="hover:bg-sidebar-accent hover:text-white"
+                  className="group hover:bg-sidebar-accent hover:text-white"
                   activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                 >
-                  <item.icon className="h-4 w-4" />
+                  <item.icon className="h-4 w-4 transition-colors group-hover:text-white" />
                   {!collapsed && <span>{t(item.titleKey)}</span>}
                 </NavLink>
               </SidebarMenuButton>
