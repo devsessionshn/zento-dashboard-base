@@ -13,6 +13,7 @@ import {
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
 import zentoLogo from "@/assets/zento-logo.png";
+import zentoIcon from "@/assets/zento-icon.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
 
@@ -59,9 +60,9 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-3 flex items-center justify-center">
         <img
-          src={zentoLogo}
+          src={collapsed ? zentoIcon : zentoLogo}
           alt="Zento"
-          className={collapsed ? "h-10 w-10 object-contain" : "h-20 w-full object-contain px-2"}
+          className={collapsed ? "h-8 w-8 object-contain" : "h-20 w-full object-contain px-2"}
         />
       </SidebarHeader>
 
@@ -80,7 +81,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/"}
-                      className="hover:bg-sidebar-accent"
+                      className="hover:bg-sidebar-accent hover:text-white"
                       activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                     >
                       <item.icon className="h-4 w-4" />
@@ -103,7 +104,7 @@ export function AppSidebar() {
               <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
                 <NavLink
                   to={item.url}
-                  className="hover:bg-sidebar-accent"
+                  className="hover:bg-sidebar-accent hover:text-white"
                   activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
                 >
                   <item.icon className="h-4 w-4" />
