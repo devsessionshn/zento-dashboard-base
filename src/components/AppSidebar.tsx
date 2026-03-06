@@ -11,7 +11,7 @@ import {
   Package,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import zentoLogo from "@/assets/zento-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
@@ -53,7 +53,13 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useLanguage();
+
+  const handleLogout = () => {
+    localStorage.removeItem("zento-auth");
+    navigate("/login");
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -140,7 +146,7 @@ export function AppSidebar() {
               <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
               <DropdownMenuItem>{t("accountSettings")}</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive">
+              <DropdownMenuItem className="text-destructive" onClick={handleLogout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 {t("logOut")}
               </DropdownMenuItem>
