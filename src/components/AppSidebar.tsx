@@ -53,7 +53,13 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
+  const navigate = useNavigate();
   const { t } = useLanguage();
+
+  const handleLogout = () => {
+    localStorage.removeItem("zento-auth");
+    navigate("/login");
+  };
 
   return (
     <Sidebar collapsible="icon">
