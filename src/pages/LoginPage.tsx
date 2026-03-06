@@ -156,7 +156,7 @@ export default function LoginPage() {
       {/* Left side - branding / illustration */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-muted p-12">
         <div className="max-w-md text-center space-y-6">
-          <img src={zentoLogo} alt="Zento" className="h-24 mx-auto" />
+          <img src={zentoLogo} alt="Zento" className="h-40 mx-auto" />
           <h2 className="text-3xl font-bold text-foreground">
             Bienvenido a Zento
           </h2>
@@ -173,7 +173,7 @@ export default function LoginPage() {
         <div className="relative z-10 w-full max-w-md mx-auto p-6">
           {/* Mobile logo */}
           <div className="lg:hidden flex justify-center mb-8">
-            <img src={zentoLogo} alt="Zento" className="h-12" />
+            <img src={zentoLogo} alt="Zento" className="h-20" />
           </div>
 
           <div className="bg-card/95 backdrop-blur-md rounded-2xl shadow-2xl p-8 space-y-6 border border-border/30">
