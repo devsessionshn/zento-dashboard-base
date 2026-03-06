@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import zentoLogo from "@/assets/zento-logo.png";
+import zentoLogo from "@/assets/zento-logo-full.png";
 
 export default function LoginPage() {
   const navigate = useNavigate();
