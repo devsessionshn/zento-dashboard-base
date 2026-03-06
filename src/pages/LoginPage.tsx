@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import zentoLogo from "@/assets/zento-logo.png";
+import zentoLogo from "@/assets/zento-logo-full.png";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader className="items-center text-center space-y-3">
-          <img src={zentoLogo} alt="Zento" className="h-10 mb-2" />
+          <img src={zentoLogo} alt="Zento" className="h-12 mb-2" />
           <CardTitle className="text-2xl">Iniciar sesión</CardTitle>
           <CardDescription>Ingresa tus credenciales para acceder al panel</CardDescription>
         </CardHeader>
