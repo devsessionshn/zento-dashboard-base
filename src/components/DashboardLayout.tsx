@@ -5,6 +5,7 @@ import { Bell, Search, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/i18n/LanguageContext";
+import zentoLogo from "@/assets/zento-logo.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,7 +28,12 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <header className="h-16 flex items-center justify-between border-b bg-card px-4 gap-4">
             <div className="flex items-center gap-3">
               <SidebarTrigger />
-              <div className="hidden md:flex relative">
+              <img
+                src={zentoLogo}
+                alt="Zento"
+                className="h-8 w-auto object-contain"
+              />
+              <div className="hidden md:flex relative ml-4">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder={t("search")}
