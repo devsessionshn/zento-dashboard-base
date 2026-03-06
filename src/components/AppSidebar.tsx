@@ -1,15 +1,18 @@
 import {
   LayoutDashboard,
   Users,
+  BarChart3,
   Settings,
+  Bell,
+  FileText,
+  HelpCircle,
   LogOut,
   ChevronDown,
   Package,
-  HelpCircle,
-  MessageCircle,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
+import zentoLogo from "@/assets/zento-logo.png";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
 
@@ -40,6 +43,9 @@ const mainNav = [
   { titleKey: "overview" as TranslationKey, url: "/", icon: LayoutDashboard },
   { titleKey: "users" as TranslationKey, url: "/users", icon: Users },
   { titleKey: "inventory" as TranslationKey, url: "/inventory", icon: Package },
+];
+
+const bottomNav = [
   { titleKey: "settings" as TranslationKey, url: "/settings", icon: Settings },
 ];
 
@@ -57,7 +63,17 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarContent className="pt-4">
+      <SidebarHeader className="p-3 flex items-center justify-center">
+        <img
+          src={zentoLogo}
+          alt="Zento"
+          className={collapsed ? "h-10 w-10 object-contain" : "h-20 w-full object-contain px-2"}
+        />
+      </SidebarHeader>
+
+      <SidebarSeparator />
+
+      <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-foreground/50 uppercase text-[10px] tracking-widest">
             {t("menu")}
@@ -82,59 +98,61 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-        {/* User Profile Section */}
-        {!collapsed && (
-          <>
-            <SidebarSeparator className="my-4" />
-            <div className="flex flex-col items-center px-4 py-3">
-              <Avatar className="h-16 w-16 border-2 border-primary/30 mb-3">
-                <AvatarFallback className="bg-primary text-primary-foreground text-lg font-bold">
-                  ZU
-                </AvatarFallback>
-              </Avatar>
-              <p className="font-semibold text-sidebar-primary-foreground text-sm">
-                Zento User
-              </p>
-              <p className="text-[11px] text-sidebar-foreground/50 mt-0.5">
-                admin@zento.app
-              </p>
-            </div>
-
-            <SidebarSeparator className="my-2" />
-
-            {/* Help Section */}
-            <div className="flex flex-col items-center px-4 py-4 text-center">
-              <HelpCircle className="h-8 w-8 text-primary/60 mb-2" />
-              <p className="text-sm font-medium text-sidebar-primary-foreground">
-                {t("help")}
-              </p>
-              <p className="text-[11px] text-sidebar-foreground/50 mt-1 leading-relaxed">
-                ¿Necesitas ayuda?
-              </p>
-              <button className="mt-3 px-4 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors">
-                Contacto
-              </button>
-            </div>
-          </>
-        )}
       </SidebarContent>
 
       <SidebarSeparator />
 
       <SidebarFooter className="p-2">
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              tooltip={t("logOut")}
-              onClick={handleLogout}
-              className="hover:bg-sidebar-accent text-destructive"
-            >
-              <LogOut className="h-4 w-4" />
-              {!collapsed && <span>{t("logOut")}</span>}
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          {bottomNav.map((item) => (
+            <SidebarMenuItem key={item.titleKey}>
+              <SidebarMenuButton asChild tooltip={t(item.titleKey)}>
+                <NavLink
+                  to={item.url}
+                  className="hover:bg-sidebar-accent"
+                  activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
+                >
+                  <item.icon className="h-4 w-4" />
+                  {!collapsed && <span>{t(item.titleKey)}</span>}
+                </NavLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarMenu>
+
+        <SidebarSeparator />
+
+        {!collapsed && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="flex w-full items-center gap-3 rounded-lg p-2 text-sm text-sidebar-foreground hover:bg-sidebar-accent transition-colors">
+                <Avatar className="h-8 w-8 border border-sidebar-border">
+                  <AvatarFallback className="bg-primary text-primary-foreground text-xs font-semibold">
+                    ZU
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1 text-left">
+                  <p className="font-medium text-sidebar-primary-foreground text-sm leading-tight">
+                    Zento User
+                  </p>
+                  <p className="text-[11px] text-sidebar-foreground/50">
+                    admin@zento.app
+                  </p>
+                </div>
+                <ChevronDown className="h-4 w-4 text-sidebar-foreground/50" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent side="top" align="start" className="w-56">
+              <DropdownMenuItem>{t("profile")}</DropdownMenuItem>
+              <DropdownMenuItem>{t("accountSettings")}</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-destructive" onClick={handleLogout}>
+                <LogOut className="mr-2 h-4 w-4" />
+                {t("logOut")}
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </SidebarFooter>
     </Sidebar>
   );
